@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Venuste Ndikumana contact</title>
+    <link rel="icon" href="iska.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #202122;
+            --text-color: #333;
+            --error-color: #dc3545;
+            --success-color: #28a745;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1100px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .contact-image {
+            flex: 1;
+            background: url('contact1.jpg') no-repeat center center;
+            background-size: cover;
+            min-height: 600px;
+        }
+
+        .contact-form {
+            flex: 1;
+            padding: 40px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgb(255, 255, 255);
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: black;
+            transition: transform 0.3s ease;
+        }
+
+        .close-btn :hover {
+            transform: scale(1.2);
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        .submit-btn {
+            width: 45%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: orange;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: orange;
+        }
+
+        .submit-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .message-box {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border: 3px solid white;
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .contact-image {
+                min-height: 250px;
+                order: -1;
+            }
+
+            .contact-form {
+                padding: 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .contact-form {
+                padding: 15px;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .submit-btn {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="contact1.jpg" alt="Contact Us" style="display:none;">
+    <div class="container">
+        <div class="contact-image"></div>
+        <div class="contact-form">
+            <button id="closeBtn" class="close-btn" aria-label="Close">❌</button>
+            <form id="contactForm">
+                <h2 align="center">Contact us</h2>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="contactReason">Reason for Contact</label>
+                    <select id="contactReason" name="contactReason" required>
+                        <option value="">Select a Reason</option>
+                        <option value="general_inquiry">General Inquiry</option>
+                        <option value="support">Technical Support</option>
+                        <option value="sales">Sales Inquiry</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="partnership">Partnership</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    Send Message
+                </button>
+                <div id="responseMessage" class="message-box"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+     // Close button functionality
+     document.getElementById('closeBtn').addEventListener('click', function() {
+        window.location.href = 'index.html'; // Redirects to index.html
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        emailjs.init("gIh0XDDsyrPmv9DBh"); // Replace with your actual EmailJS public key
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const submitButton = e.target.querySelector('button');
+        const responseMessage = document.getElementById('responseMessage');
+        responseMessage.textContent = ""; 
+        responseMessage.className = "message-box";
+
+        // Disable button and show spinner
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Sending... <span class="loading-spinner"></span>';
+
+        const now = new Date();
+        const formattedTime = now.toLocaleString();
+
+        const formData = {
+            user_name: document.getElementById('name').value.trim(),
+            user_email: document.getElementById('email').value.trim(),
+            phone: document.getElementById('phone').value.trim() || "N/A",
+            contact_reason: document.getElementById('contactReason').value,
+            message: document.getElementById('message').value.trim(),
+            time: formattedTime
+        };
+
+        // Send email to you
+        emailjs.send("service_iyonkmz", "template_ksuhj9f", formData)
+            .then(response => {
+                console.log("Email to Admin Sent:", response);
+                
+                // Now send confirmation email to the user
+                return emailjs.send("service_iyonkmz", "template_u1cn6jn", formData);
+            })
+            .then(response => {
+                console.log("Confirmation Email Sent to User:", response);
+                responseMessage.textContent = "Message sent successfully!";
+                responseMessage.classList.add("success");
+
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            })
+            .catch(error => {
+                responseMessage.textContent = "Failed to send message. Please try again.";
+                responseMessage.classList.add("error");
+                console.error("EmailJS Error:", error);
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+            });
+    });
+
+</script>
+</body>
+</html>

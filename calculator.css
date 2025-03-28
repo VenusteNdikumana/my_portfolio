@@ -1,0 +1,121 @@
+ /* Global styling */
+ body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Header styling */
+  header {
+    background-color: #333;;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 0;
+  }
+
+  /* Calculator styling */
+  .calculator {
+    width: 300px;
+    background-color: #333;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    margin-top: 0px; /* corrected typo */
+  }
+
+  .display {
+    background-color: #000;
+    color: white;
+    font-size: 2.5em;
+    text-align: right;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    background-color: rgb(116, 116, 116);
+  }
+
+  .btn {
+    padding: 20px;
+    font-size: 1.5em;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-dark {
+    background-color: #333;
+  }
+
+  .btn-light {
+    color: #000;
+    background-color: #a5a5a5;
+  }
+
+  .btn-orange {
+    background-color: #ff9500;
+  }
+
+  .btn:active {
+    transform: scale(0.95);
+  }
+
+  header img {
+    height: 107px;
+    width: auto;
+    /* Removed float: right to ensure it stays in its flex context */
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    padding: 0;
+    text-align: left; /* Ensures text is aligned to the left */
+  }
+
+  header p {
+    margin: 5px 0 0;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  main {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 1.5rem;
+    }
+  }
+  @media (max-width: 480px) {
+    header img {
+      height: 60px;
+    }
+
+    header h1 {
+      font-size: 1.2rem;
+    }
+  }

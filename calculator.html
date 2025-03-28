@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPhone Style Calculator</title>
+  <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+
+<header>
+  <h1>Student Calculator</h1>
+</header>
+<div class="calculator">
+  <div id="display" class="display">0</div>
+  <div class="buttons">
+    <button class="btn btn-light" onclick="clearDisplay()">AC</button>
+    <button class="btn btn-light" onclick="toggleSign()">±</button>
+    <button class="btn btn-light" onclick="percentage()">%</button>
+    <button class="btn btn-orange" onclick="chooseOperator('/')">÷</button>
+    <button class="btn btn-dark" onclick="appendNumber('7')">7</button>
+    <button class="btn btn-dark" onclick="appendNumber('8')">8</button>
+    <button class="btn btn-dark" onclick="appendNumber('9')">9</button>
+    <button class="btn btn-orange" onclick="chooseOperator('*')">×</button>
+    <button class="btn btn-dark" onclick="appendNumber('4')">4</button>
+    <button class="btn btn-dark" onclick="appendNumber('5')">5</button>
+    <button class="btn btn-dark" onclick="appendNumber('6')">6</button>
+    <button class="btn btn-orange" onclick="chooseOperator('-')">−</button>
+    <button class="btn btn-dark" onclick="appendNumber('1')">1</button>
+    <button class="btn btn-dark" onclick="appendNumber('2')">2</button>
+    <button class="btn btn-dark" onclick="appendNumber('3')">3</button>
+    <button class="btn btn-orange" onclick="chooseOperator('+')">+</button>
+    <button class="btn btn-dark" style="grid-column: span 2;" onclick="appendNumber('0')">0</button>
+    <button class="btn btn-dark" onclick="appendNumber('.')">.</button>
+    <button class="btn btn-orange" onclick="calculate()">=</button>
+  </div>
+</div>
+
+<script>
+  let display = document.getElementById('display');
+  let currentOperand = '0';
+  let previousOperand = '';
+  let operator = null;
+  let resetDisplay = false;
+
+  function updateDisplay() {
+    display.textContent = currentOperand;
+  }
+
+  function clearDisplay() {
+    currentOperand = '0';
+    previousOperand = '';
+    operator = null;
+    resetDisplay = false;
+    updateDisplay();
+  }
+
+  function appendNumber(number) {
+    if (resetDisplay) {
+      currentOperand = number;
+      resetDisplay = false;
+    } else {
+      if (number === '.' && currentOperand.includes('.')) return;
+      currentOperand = currentOperand === '0' ? number : currentOperand + number;
+    }
+    updateDisplay();
+  }
+
+  function chooseOperator(op) {
+    if (operator !== null) calculate();
+    previousOperand = currentOperand;
+    operator = op;
+    resetDisplay = true;
+  }
+
+  function calculate() {
+    if (operator === null || resetDisplay) return;
+    let result;
+    const prev = parseFloat(previousOperand);
+    const current = parseFloat(currentOperand);
+
+    if (isNaN(prev) || isNaN(current)) return;
+
+    switch (operator) {
+      case '+':
+        result = prev + current;
+        break;
+      case '-':
+        result = prev - current;
+        break;
+      case '*':
+        result = prev * current;
+        break;
+      case '/':
+        result = current === 0 ? 'Error' : prev / current;
+        break;
+      default:
+        return;
+    }
+    currentOperand = result.toString();
+    operator = null;
+    resetDisplay = true;
+    updateDisplay();
+  }
+
+  function toggleSign() {
+    currentOperand = (parseFloat(currentOperand) * -1).toString();
+    updateDisplay();
+  }
+
+  function percentage() {
+    currentOperand = (parseFloat(currentOperand) / 100).toString();
+    updateDisplay();
+  }
+</script>
+
+</body>
+</html>
