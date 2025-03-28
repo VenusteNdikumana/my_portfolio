@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        p, ul {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #closePolicy {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        #closePolicy:hover {
+            background-color: darkred;
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #backToTop:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="privacyPolicy">
+        <button id="closePolicy">X</button>
+        <h1>Privacy Policy</h1>
+        <p>Effective Date: <strong>March 18, 2025</strong></p>
+        
+        <section>
+            <h2>1. Introduction</h2>
+            <p>Welcome to Venuste Portfolio. Your privacy is important to us.
+                This Privacy Policy explains how we collect, use, disclose, and protect your personal information.</p>
+        </section>
+
+        <section>
+            <h2>2. Information We Collect</h2>
+            <ul>
+                <li>Personal Information (Name, Email, Phone Number)</li>
+                <li>Usage Data (IP Address, Browser Type, Cookies)</li>
+                <li>Third-Party Data (Analytics, Social Media, Advertising Partners)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. How We Use Your Information</h2>
+            <p>We use your information to:</p>
+            <ul>
+                <li>Provide and improve our services</li>
+                <li>Communicate updates and offers</li>
+                <li>Ensure security and prevent fraud</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. Your Rights (GDPR & CCPA)</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access and request a copy of your data</li>
+                <li>Request data deletion</li>
+                <li>Opt out of data processing</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>5. Cookies & Tracking</h2>
+            <p>We use cookies for analytics and personalized content. You can disable cookies in your browser settings.</p>
+        </section>
+
+        <section>
+            <h2>6. Data Security</h2>
+            <p>We take strict security measures to protect your data, but no system is 100% secure.</p>
+        </section>
+
+        <section>
+            <h2>7. Changes to This Policy</h2>
+            <p>We may update this policy periodically. The latest version will always be available on our website.</p>
+        </section>
+
+        <section>
+            <h2>8. Contact Us</h2>
+            <p>If you have any questions, contact us at <a href="mailto:venustendikumana2003@gmail.com">Mail me</a>.</p>
+        </section>
+
+        <button id="backToTop">↑</button>
+    </div>
+
+    <script>
+        const backToTopButton = document.getElementById("backToTop");
+        const privacyPolicy = document.getElementById("privacyPolicy");
+        const closePolicyButton = document.getElementById("closePolicy");
+
+        // Show "Back to Top" button when scrolling
+        window.onscroll = function () {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        // Scroll to top when clicking the button
+        backToTopButton.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Hide privacy policy when clicking the close button
+        closePolicyButton.addEventListener("click", function () {
+            privacyPolicy.style.display = "none";
+        });
+        // Hide privacy policy and return to index.html when clicking the close button
+closePolicyButton.addEventListener("click", function () {
+    window.location.href = "index.html"; // Redirect to the index page
+});
+
+    </script>
+
+</body>
+</html>
