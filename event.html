@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventFlow - Event Management System</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4cc9f0;
+            --warning-color: #f8961e;
+            --danger-color: #ef476f;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #c3d6f3;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 0;
+            min-height: 80vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 3rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            background-color: rgba(67, 97, 238, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-title h2 {
+            font-size: 1.8rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+        }
+
+        .stat-card h3 {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .events-list {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+
+        .events-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .events-list-header h3 {
+            font-size: 1.3rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:last-child {
+            border-bottom: none;
+        }
+
+        .status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-upcoming {
+            background-color: rgba(76, 201, 240, 0.1);
+            color: var(--success-color);
+        }
+
+        .status-ongoing {
+            background-color: rgba(248, 150, 30, 0.1);
+            color: var(--warning-color);
+        }
+
+        .status-completed {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+        }
+
+        .status-cancelled {
+            background-color: rgba(239, 71, 111, 0.1);
+            color: var(--danger-color);
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: #555;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            color: var(--primary-color);
+        }
+
+        /* Create Event Form */
+        .event-form {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+        }
+
+        .form-title {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-title h2 {
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Login/Register Forms */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+        }
+
+        .auth-card .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-card h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .auth-switch a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Event Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 0;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                text-align: center;
+            }
+
+            .feature-icon {
+                margin: 0 auto 1.5rem;
+            }
+        }
+
+        /* Menu Toggle for mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                padding: 1rem;
+            }
+
+            .nav-links.active li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-calendar-alt"></i>
+                    Event Management
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                    <li><a href="#" class="nav-link" id="loginBtn">Login</a></li>
+                    <li><a href="#" class="btn btn-outline" id="registerBtn">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Landing Page -->
+    <section class="landing-page" id="home">
+        <!-- Hero Section -->
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Simplify Your Event Management</h1>
+                    <p>EventFlow helps you streamline your entire event planning process, from registration to reporting. Create, manage, and analyze your events all in one place.</p>
+                    <a href="#" class="btn" id="getStartedBtn">Get Started</a>
+                </div>
+                <div class="hero-image">
+                    <img src="event.jpg" alt="Event Management Dashboard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Features</h2>
+                <p>Everything you need to create and manage successful events</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-plus"></i>
+                    </div>
+                    <h3>Event Creation</h3>
+                    <p>Create and customize events with ease. Add details, set capacities, and design beautiful event pages.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Registration Management</h3>
+                    <p>Manage registrations, track attendees, and send automated confirmations and reminders.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics & Reporting</h3>
+                    <p>Get detailed insights and analytics about your events, attendees, and performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Task Management</h3>
+                    <p>Create and assign tasks to your team members and track progress to ensure nothing is missed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Marketing</h3>
+                    <p>Send personalized emails to promote your events and communicate with attendees.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Payment Processing</h3>
+                    <p>Collect payments securely and track revenue for paid events and donations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section (Hidden by default) -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="dashboard-title">
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="btn" id="createEventBtn">Create Event</button>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Events</h3>
+                    <div class="number">12</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Events</h3>
+                    <div class="number">5</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Attendees</h3>
+                    <div class="number">1,250</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Revenue</h3>
+                    <div class="number">$9,540</div>
+                </div>
+            </div>
+            <div class="events-list">
+                <div class="events-list-header">
+                    <h3>Your Events</h3>
+                    <div class="filter">
+                        <select id="eventFilter">
+                            <option value="all">All Events</option>
+                            <option value="upcoming">Upcoming</option>
+                            <option value="ongoing">Ongoing</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Attendees</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="eventsList">
+                        <!-- Events will be dynamically loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Event Form (Hidden by default) -->
+    <section class="event-form" id="eventForm">
+        <div class="form-title">
+            <h2>Create New Event</h2>
+        </div>
+        <form id="createEventForm">
+            <div class="form-group">
+                <label for="eventName">Event Name</label>
+                <input type="text" id="eventName" name="eventName" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="startDate">Start Date</label>
+                    <input type="datetime-local" id="startDate" name="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="endDate">End Date</label>
+                    <input type="datetime-local" id="endDate" name="endDate" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="eventLocation">Location</label>
+                <input type="text" id="eventLocation" name="eventLocation" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="eventType">Event Type</label>
+                    <select id="eventType" name="eventType" required>
+                        <option value="">Select Event Type</option>
+                        <option value="conference">Conference</option>
+                        <option value="seminar">Seminar</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="networking">Networking</option>
+                        <option value="concert">Concert</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="capacity">Capacity</label>
+                    <input type="number" id="capacity" name="capacity" min="1" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="eventDescription">Description</label>
+                <textarea id="eventDescription" name="eventDescription" rows="4" required></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="ticketPrice">Ticket Price ($)</label>
+                    <input type="number" id="ticketPrice" name="ticketPrice" min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="registrationDeadline">Registration Deadline</label>
+                    <input type="date" id="registrationDeadline" name="registrationDeadline">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" id="cancelEventBtn">Cancel</button>
+                <button type="submit" class="btn">Create Event</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Login Form (Hidden by default) -->
+    <section class="auth-container" id="loginForm" style="display: none;">
+        <div class="auth-card">
+            <div class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                EventFlow
+            </div>
+            <h2>Login to Your Account</h2>
+            <form id="userLoginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" name="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn" style="width: 100%;">Login</button>
+                </div>
+            </form>
+            <div class="auth-switch">
+                Don't have an account? <a href="#" id="switchToRegister">Register</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Register Form (Hidden by default) -->
+    <section class="auth-container" id="registerForm" style="display: none;">
+        <div class="auth-card">
+            <div class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                EventFlow
+            </div>
+            <h2>Create Your Account</h2>
+            <form id="userRegisterForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" name="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" name="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn" style="width: 100%;">Register</button>
+                </div>
+            </form>
+            <div class="auth-switch">
+                Already have an account? <a href="#" id="switchToLogin">Login</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Modal (Hidden by default) -->
+    <div class="modal" id="eventDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalEventTitle">Event Details</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalEventDetails">
+                <!-- Event details will be dynamically loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="closeModalBtn">Close</button>
+                <button class="btn" id="editEventBtn">Edit Event</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>EventFlow</h3>
+                    <p>Simplify your event management with our powerful platform. Create, manage, and analyze events with ease.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@eventflow.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Event Street, San Francisco, CA 94103</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EventFlow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Sample data for demo purposes
+        const eventsData = [
+            {
+                id: 1,
+                name: "Tech Conference 2025",
+                startDate: "2025-04-15T09:00",
+                endDate: "2025-04-17T18:00",
+                location: "Convention Center, San Francisco",
+                type: "conference",
+                description: "A three-day conference featuring the latest technology trends and innovations.",
+                capacity: 500,
+                attendees: 320,
+                ticketPrice: 199.99,
+                registrationDeadline: "2025-04-01",
+                status: "upcoming"
+            },
+            {
+                id: 2,
+                name: "Digital Marketing Workshop",
+                startDate: "2025-03-25T10:00",
+                endDate: "2025-03-25T16:00",
+                location: "Business Hub, New York",
+                type: "workshop",
+                description: "A hands-on workshop to learn the latest digital marketing strategies and tools.",
+                capacity: 50,
+                attendees: 42,
+                ticketPrice: 79.99,
+                registrationDeadline: "2025-03-20",
+                status: "ongoing"
+            },
+            {
+                id: 3,
+                name: "Annual Charity Gala",
+                startDate: "2025-02-10T18:00",
+                endDate: "2025-02-10T23:00",
+                location: "Grand Ballroom, Chicago",
+                type: "networking",
+                description: "An elegant evening to raise funds for local charities and celebrate community achievements.",
+                capacity: 200,
+                attendees: 187,
+                ticketPrice: 150.00,
+                registrationDeadline: "2025-02-01",
+                status: "completed"
+            },
+            {
+                id: 4,
+                name: "Product Launch Webinar",
+                startDate: "2025-03-05T14:00",
+                endDate: "2025-03-05T15:30",
+                location: "Virtual Event",
+                type: "seminar",
+                description: "Join us for the exclusive launch of our new product line with demos and Q&A.",
+                capacity: 1000,
+                attendees: 845,
+                ticketPrice: 0,
+                registrationDeadline: "2025-03-04",
+                status: "completed"
+            },
+            {
+                id: 5,
+                name: "Summer Music Festival",
+                startDate: "2025-07-20T12:00",
+                endDate: "2025-07-22T23:00",
+                location: "Central Park, New York",
+                type: "concert",
+                description: "A three-day music festival featuring top artists across multiple genres.",
+                capacity: 5000,
+                attendees: 0,
+                ticketPrice: 89.99,
+                registrationDeadline: "2025-07-15",
+                status: "upcoming"
+            }
+        ];
+
+        // DOM Elements
+        const landingPage = document.querySelector('.landing-page');
+        const dashboard = document.querySelector('.dashboard');
+        const eventForm = document.querySelector('.event-form');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const eventDetailsModal = document.getElementById('eventDetailsModal');
+        
+        // Buttons and triggers
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const getStartedBtn = document.getElementById('getStartedBtn');
+        const createEventBtn = document.getElementById('createEventBtn');
+        const cancelEventBtn = document.getElementById('cancelEventBtn');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const closeModal = document.getElementById('closeModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const editEventBtn = document.getElementById('editEventBtn');
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        // Forms
+        const createEventForm = document.getElementById('createEventForm');
+        const userLoginForm = document.getElementById('userLoginForm');
+        const userRegisterForm = document.getElementById('userRegisterForm');
+
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Navigation handlers
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllSections();
+            loginForm.style.display = 'flex';
+        });
+
+        registerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllSections();
+            registerForm.style.display = 'flex';
+        });
+
+        getStartedBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllSections();
+            registerForm.style.display = 'flex';
+        });
+
+        switchToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'flex';
+        });
+
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerForm.style.display = 'none';
+            loginForm.style.display = 'flex';
+        });
+
+        createEventBtn.addEventListener('click', () => {
+            dashboard.style.display = 'none';
+            eventForm.style.display = 'block';
+        });
+
+        cancelEventBtn.addEventListener('click', () => {
+            eventForm.style.display = 'none';
+            dashboard.style.display = 'block';
+            createEventForm.reset();
+        });
+
+        // Modal handlers
+        closeModal.addEventListener('click', () => {
+            eventDetailsModal.style.display = 'none';
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            eventDetailsModal.style.display = 'none';
+        });
+
+        editEventBtn.addEventListener('click', () => {
+            // In a real app, this would populate the form with event details
+            eventDetailsModal.style.display = 'none';
+            dashboard.style.display = 'none';
+            eventForm.style.display = 'block';
+        });
+
+        // Hide modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === eventDetailsModal) {
+                eventDetailsModal.style.display = 'none';
+            }
+        });
+
+        // Form submissions
+        userLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In a real app, this would authenticate the user
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Simulate login success
+            hideAllSections();
+            dashboard.style.display = 'block';
+            loadEvents(); // Load events into dashboard
+            
+            // Update navigation
+            document.querySelector('.nav-links').innerHTML = `
+                <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#events" class="nav-link">My Events</a></li>
+                <li><a href="#reports" class="nav-link">Reports</a></li>
+                <li><a href="#" class="nav-link">Settings</a></li>
+                <li><a href="#" class="btn btn-outline" id="logoutBtn">Logout</a></li>
+            `;
+            
+            // Add logout handler
+            document.getElementById('logoutBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.reload(); // Simple way to "logout" for demo
+            });
+        });
+
+        userRegisterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In a real app, this would register the user
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
+            
+            // Redirect to login
+            registerForm.style.display = 'none';
+            loginForm.style.display = 'flex';
+            
+            // Pre-fill login form
+            document.getElementById('loginEmail').value = email;
+        });
+
+        createEventForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In a real app, this would save the event to a database
+            
+            // Get form values
+            const eventName = document.getElementById('eventName').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const eventLocation = document.getElementById('eventLocation').value;
+            const eventType = document.getElementById('eventType').value;
+            const capacity = document.getElementById('capacity').value;
+            const eventDescription = document.getElementById('eventDescription').value;
+            const ticketPrice = document.getElementById('ticketPrice').value;
+            const registrationDeadline = document.getElementById('registrationDeadline').value;
+            
+            // Create new event object
+            const newEvent = {
+                id: eventsData.length + 1,
+                name: eventName,
+                startDate: startDate,
+                endDate: endDate,
+                location: eventLocation,
+                type: eventType,
+                description: eventDescription,
+                capacity: parseInt(capacity),
+                attendees: 0,
+                ticketPrice: parseFloat(ticketPrice) || 0,
+                registrationDeadline: registrationDeadline,
+                status: "upcoming"
+            };
+            
+            // Add to events data
+            eventsData.unshift(newEvent);
+            
+            // Reset form and return to dashboard
+            createEventForm.reset();
+            eventForm.style.display = 'none';
+            dashboard.style.display = 'block';
+            
+            // Reload events
+            loadEvents();
+            
+            // Update stats
+            updateDashboardStats();
+        });
+
+        // Load events into the dashboard table
+        function loadEvents(filter = 'all') {
+            const eventsTable = document.getElementById('eventsList');
+            eventsTable.innerHTML = '';
+            
+            // Filter events if needed
+            let filteredEvents = eventsData;
+            if (filter !== 'all') {
+                filteredEvents = eventsData.filter(event => event.status === filter);
+            }
+            
+            // Create table rows
+            filteredEvents.forEach(event => {
+                const row = document.createElement('tr');
+                
+                // Format dates
+                const startDate = new Date(event.startDate);
+                const startDateFormatted = startDate.toLocaleDateString();
+                
+                row.innerHTML = `
+                    <td>${event.name}</td>
+                    <td>${startDateFormatted}</td>
+                    <td>${event.location}</td>
+                    <td>${event.attendees} / ${event.capacity}</td>
+                    <td><span class="status status-${event.status}">${capitalizeFirstLetter(event.status)}</span></td>
+                    <td>
+                        <button class="action-btn view-event" data-id="${event.id}"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-event" data-id="${event.id}"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-event" data-id="${event.id}"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                
+                eventsTable.appendChild(row);
+            });
+            
+            // Add event listeners for action buttons
+            addEventButtonListeners();
+        }
+
+        // Add event listeners to the action buttons in the table
+        function addEventButtonListeners() {
+            // View event
+            document.querySelectorAll('.view-event').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const eventId = parseInt(e.currentTarget.getAttribute('data-id'));
+                    const event = eventsData.find(ev => ev.id === eventId);
+                    showEventDetails(event);
+                });
+            });
+            
+            // Edit event
+            document.querySelectorAll('.edit-event').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const eventId = parseInt(e.currentTarget.getAttribute('data-id'));
+                    const event = eventsData.find(ev => ev.id === eventId);
+                    
+                    // Populate form with event data (in a real app)
+                    dashboard.style.display = 'none';
+                    eventForm.style.display = 'block';
+                    
+                    // For demo purposes we'll just show an alert
+                    alert(`Editing event: ${event.name}`);
+                });
+            });
+            
+            // Delete event
+            document.querySelectorAll('.delete-event').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const eventId = parseInt(e.currentTarget.getAttribute('data-id'));
+                    
+                    // Confirm deletion
+                    if (confirm("Are you sure you want to delete this event?")) {
+                        // Remove from array
+                        const index = eventsData.findIndex(ev => ev.id === eventId);
+                        if (index !== -1) {
+                            eventsData.splice(index, 1);
+                            loadEvents(); // Reload events
+                            updateDashboardStats(); // Update stats
+                        }
+                    }
+                });
+            });
+        }
+
+        // Show event details in modal
+        function showEventDetails(event) {
+            const modalTitle = document.getElementById('modalEventTitle');
+            const modalBody = document.getElementById('modalEventDetails');
+            
+            // Set modal title
+            modalTitle.textContent = event.name;
+            
+            // Format dates
+            const startDate = new Date(event.startDate);
+            const endDate = new Date(event.endDate);
+            const startDateFormatted = startDate.toLocaleString();
+            const endDateFormatted = endDate.toLocaleString();
+            
+            // Set modal content
+            modalBody.innerHTML = `
+                <div class="event-detail">
+                    <h3>Event Details</h3>
+                    <p><strong>Type:</strong> ${capitalizeFirstLetter(event.type)}</p>
+                    <p><strong>Status:</strong> <span class="status status-${event.status}">${capitalizeFirstLetter(event.status)}</span></p>
+                    <p><strong>Start Date:</strong> ${startDateFormatted}</p>
+                    <p><strong>End Date:</strong> ${endDateFormatted}</p>
+                    <p><strong>Location:</strong> ${event.location}</p>
+                    <p><strong>Description:</strong> ${event.description}</p>
+                </div>
+                <div class="event-detail">
+                    <h3>Attendance</h3>
+                    <p><strong>Capacity:</strong> ${event.capacity}</p>
+                    <p><strong>Registered Attendees:</strong> ${event.attendees}</p>
+                    <p><strong>Available Spots:</strong> ${event.capacity - event.attendees}</p>
+                </div>
+                <div class="event-detail">
+                    <h3>Registration</h3>
+                    <p><strong>Ticket Price:</strong> $${event.ticketPrice.toFixed(2)}</p>
+                    <p><strong>Registration Deadline:</strong> ${event.registrationDeadline ? new Date(event.registrationDeadline).toLocaleDateString() : 'No deadline'}</p>
+                    <p><strong>Total Revenue:</strong> $${(event.attendees * event.ticketPrice).toFixed(2)}</p>
+                </div>
+            `;
+            
+            // Show modal
+            eventDetailsModal.style.display = 'flex';
+        }
+
+        // Update dashboard statistics
+        function updateDashboardStats() {
+            // In a real app, this would calculate actual statistics
+            const totalEvents = eventsData.length;
+            const activeEvents = eventsData.filter(e => e.status === 'upcoming' || e.status === 'ongoing').length;
+            const totalAttendees = eventsData.reduce((sum, event) => sum + event.attendees, 0);
+            const totalRevenue = eventsData.reduce((sum, event) => sum + (event.attendees * event.ticketPrice), 0);
+            
+            // Update stats in the UI
+            document.querySelector('.stats-grid').innerHTML = `
+                <div class="stat-card">
+                    <h3>Total Events</h3>
+                    <div class="number">${totalEvents}</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Events</h3>
+                    <div class="number">${activeEvents}</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Attendees</h3>
+                    <div class="number">${totalAttendees.toLocaleString()}</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Revenue</h3>
+                    <div class="number">$${totalRevenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                </div>
+            `;
+        }
+
+        // Event filter change handler
+        document.getElementById('eventFilter').addEventListener('change', (e) => {
+            loadEvents(e.target.value);
+        });
+
+        // Helper function to capitalize first letter
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        // Helper function to hide all sections
+        function hideAllSections() {
+            landingPage.style.display = 'block';
+            dashboard.style.display = 'none';
+            eventForm.style.display = 'none';
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'none';
+            eventDetailsModal.style.display = 'none';
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            // Pre-load events
+            loadEvents();
+            
+            // Initialize event filter
+            document.getElementById('eventFilter').value = 'all';
+        });
+    </script>
+</body>
+</html>

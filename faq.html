@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs Venuste's Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #a89e9e;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .faq {
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .answer {
+            display: none;
+            padding: 5px 0;
+        }
+        .close-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color:white;
+            color: white;
+            cursor: pointer;
+            border-radius: 3px;
+            z-index: 9999;
+        }
+        .faq-section {
+            display: block; /* Initially show the FAQ section */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Click on the below Frequently Asked Questions</h1>
+    </header>
+    
+    <main>
+        <!-- FAQ section that can be shown/hidden -->
+        <section class="faq-section">
+            <section class="faq">
+                <h2>General FAQs</h2>
+                <div class="question">Who am I?</div>
+                <div class="answer">I’m Venuste, a passionate full-stack developer specializing in JavaScript, Node.js, React, and MySQL.</div>
+                
+                <div class="question">How did I start coding?</div>
+                <div class="answer">My journey began with learning HTML/CSS and building small projects, which led me to explore full-stack development.</div>
+            </section>
+            
+            <section class="faq">
+                <h2>Technical & Development FAQs</h2>
+                <div class="question">What technologies do I use?</div>
+                <div class="answer">I work with frontend (React.js, Tailwind CSS), backend (Node.js, Express.js), and database (MySQL). Hosting is done via Railway and Vercel.</div>
+                
+                <div class="question">What projects have I worked on?</div>
+                <div class="answer">I have built a chatbot, a contact form system, and other web applications that enhance user experience and efficiency.</div>
+                
+                <div class="question">How do I ensure security in my applications?</div>
+                <div class="answer">I implement security measures like input validation, authentication, and environment variable usage.</div>
+                
+                <div class="question">What challenges have I faced in development?</div>
+                <div class="answer">One of my biggest challenges was debugging complex backend issues, which taught me to analyze logs and optimize my code.</div>
+                
+                <div class="question">What tools do I use for development?</div>
+                <div class="answer">I use Git & GitHub for version control, Postman for API testing, and MySQL Workbench for database management.</div>
+            </section>
+            
+            <section class="faq">
+                <h2>Portfolio & Services</h2>
+                <div class="question">Can I collaborate with you?</div>
+                <div class="answer">Yes! I am open to collaborations and freelance projects. Reach out via my contact form.</div>
+                
+                <div class="question">Do you take freelance or contract work?</div>
+                <div class="answer">Absolutely! I offer development services for web applications, APIs, and more.</div>
+            </section>
+            
+            <section class="faq">
+                <h2>Hosting & Performance</h2>
+                <div class="question">Where is my portfolio hosted?</div>
+                <div class="answer">My backend is hosted on Railway, and my frontend is deployed on Vercel for speed and scalability.</div>
+                
+                <div class="question">How do I optimize my applications?</div>
+                <div class="answer">I ensure performance by writing clean code, using caching, and optimizing database queries.</div>
+            </section>
+            
+            <section class="faq">
+                <h2>Contact & Follow-Up</h2>
+                <div class="question">How can you contact me?</div>
+                <div class="answer">You can reach me through my contact form, email, or social media.</div>
+                
+                <div class="question">Do I respond to messages quickly?</div>
+                <div class="answer">I aim to respond within 24 hours. If urgent, please mention it in your message.</div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Close Button to hide the FAQ section and go back to the previous page -->
+    <div class="close-btn" onclick="closeFAQ()">❌</div>
+
+    <script>
+        // Function to hide the FAQ section and go back to the previous page
+        function closeFAQ() {
+            // Hide the FAQ section
+            document.querySelector('.faq-section').style.display = 'none';
+
+            // Go back to the previous page
+            window.history.back(); // This will take the user to the previous page in their history
+        }
+
+        // Toggle answer visibility on question click
+        document.addEventListener("DOMContentLoaded", function() {
+            let questions = document.querySelectorAll(".question");
+            questions.forEach(question => {
+                question.addEventListener("click", function() {
+                    let answer = this.nextElementSibling;
+                    answer.style.display = answer.style.display === "block" ? "none" : "block";
+                });
+            });
+        });
+    </script>
+</body>
+</html>
