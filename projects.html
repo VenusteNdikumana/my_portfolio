@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VenusteNdikumana</title>
+    <link rel="icon" href="iska.png" type="image/x-icon">
+    <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Venus🎦NDK</div>
+        <button class="mode-toggle" id="modeToggleBtn">☪️</button>
+        <div class="menu-icon" id="menuToggle">☰</div>
+        <nav>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="social-media">
+            <a href="https://www.facebook.com"><img src="facebook.png" alt="Facebook" width="24"></a>
+            <a href="https://www.x.com"><img src="x.png" alt="X" width="24"></a>
+            <a href="https://www.pinterest.com"><img src="pinterest.png" alt="Pinterest" width="24"></a>
+            <a href="https://www.instagram.com"><img src="instagram.png" alt="Instagram" width="24"></a>
+            <a href="https://www.youtube.com"><img src="youtube.png" alt="YouTube" width="24"></a>
+        </div>
+    </header>
+
+    <script>
+        // DOM Elements
+        const modeToggleBtn = document.getElementById('modeToggleBtn');
+        const body = document.body;
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        // Theme mode toggle functionality
+        function setMode(mode) {
+            if (mode === 'light') {
+                body.classList.add('light-mode');
+                modeToggleBtn.textContent = '☪️';
+                localStorage.setItem('mode', 'light');
+            } else {
+                body.classList.remove('light-mode');
+                modeToggleBtn.textContent = '🔆';
+                localStorage.setItem('mode', 'dark');
+            }
+        }
+
+        function toggleMode() {
+            if (body.classList.contains('light-mode')) {
+                setMode('dark');
+            } else {
+                setMode('light');
+            }
+        }
+
+        // Load saved mode from local storage
+        const currentMode = localStorage.getItem('mode');
+        if (currentMode) {
+            setMode(currentMode);
+        }
+
+        // Mobile menu functionality
+        function toggleMenu() {
+            if (navMenu.style.display === 'flex') {
+                navMenu.style.display = 'none';
+            } else {
+                navMenu.style.display = 'flex';
+            }
+        }
+
+        // Event listeners
+        modeToggleBtn.addEventListener('click', toggleMode);
+        menuToggle.addEventListener('click', toggleMenu);
+
+        // Adjust menu display on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && navMenu.style.display === 'flex') {
+                navMenu.style.display = '';
+            }
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    navMenu.style.display = 'none';
+                }
+            });
+        });
+
+// Project filtering functionality
+document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                // Get filter value
+                const filterValue = this.getAttribute('data-filter');
+
+                // Filter projects
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    </script>
+    <section class="projects-section" id="projects">
+
+        <div class="filter-buttons">
+            <button class="filter-button active" data-filter="all">All</button>
+            <button class="filter-button" data-filter="web">Web Development</button>
+            <button class="filter-button" data-filter="mobile">Mobile Apps</button>
+            <button class="filter-button" data-filter="design">UI Design</button>
+        </div>
+
+        <div class="projects-container">
+            <!-- Project 1 -->
+            <div class="project-card" data-category="web">
+                <img src="e-commerce.jpg" alt="E-commerce Website" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">E-commerce Platform</h3>
+                    <p class="project-description">A fully responsive e-commerce website with shopping cart functionality and secure payment processing.</p>
+                    <a href="ecommerce.html" class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card" data-category="mobile">
+                <img src="fitness.jpg" alt="Fitness App" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">Fitness Tracking App</h3>
+                    <p class="project-description">A mobile application that tracks workouts, nutrition, and provides personalized fitness recommendations.</p>
+                    <a href="fitness.html" class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card" data-category="design">
+                <img src="admin.png" alt="Dashboard UI" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">Admin Dashboard</h3>
+                    <p class="project-description">A modern, intuitive dashboard interface for business analytics and data visualization.</p>
+                    <a href="dashboard.html" class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card" data-category="mobile">
+                <img src="weather.png" alt="Weather App" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">Weather app using Public APIs</h3>
+                    <p class="project-description">Real-time weather forecasts with interactive maps and data visualization.</p>
+                    <a href="weatherApp.html" class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+             <!-- Project 5 -->
+             <div class="project-card" data-category="web">
+                <img src="event.jpg" alt="Event management" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">Event Management System</h3>
+                    <p class="project-description">Comprehensive platform for organizing, scheduling, and tracking events with attendee management.</p>
+                    <a href="event.html" class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+             <!-- Project 6 -->
+             <div class="project-card" data-category="design">
+                <img src="video.png" alt="Video Streaming" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">Video Streaming Platform</h3>
+                    <p class="project-description">Custom media player with content recommendations and user engagement analytics.</p>
+                    <a href="streaming.html" class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="project-card" data-category="web">
+                <img src="port.png" alt="Portfolio Website" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">My Portfolio</h3>
+                    <p class="project-description">A clean, modern portfolio website showcasing creative work and professional experience.</p>
+                    <a href="index.html" class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="project-card" data-category="mobile">
+                <img src="travel.jpg" alt="Travel App" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">Travel Companion</h3>
+                    <p class="project-description">An app that helps users plan trips, discover attractions, and navigate new cities with ease.</p>
+                    <a href="travel.html" class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <!-- Project 9 -->
+            <div class="project-card" data-category="design">
+                <img src="calculator.jpg" alt="Brand Identity" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">Scientific Calculator</h3>
+                    <p class="project-description">Complete brand identity package including functionality, color palette, typography, and brand guidelines.</p>
+                    <a href="calculator.html" class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer-section">
+        <div class="footer-container">
+            <!-- Quick Links -->
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Web Development</a></li>
+                    <li><a href="index.html">Responsive Design</a></li>
+                    <li><a href="ecommerce.html">E-commerce</a></li>
+                    <li><a href="index.html">UI/UX Design</a></li>
+                </ul>
+            </div>
+            
+            <!-- Resources -->
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="index.html">Portfolio</a></li>
+                    <li><a href="projects.html">Testimonials</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="footer-column contact-info">
+                <h3>Contact</h3>
+                <ul class="footer-contact">
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span>+250 799375874</span>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>venustendikumana2003@gmail.com</span>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>Musanze, Rwanda</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="copyright">
+            <p>&copy; 2025 Venuste portfolio. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

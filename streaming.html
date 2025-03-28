@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online movie Streaming</title>
+    <link rel="stylesheet" href="streaming.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>🎦MovieStream</h1>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">TVs</a></li>
+                    <li><a href="#">Live</a></li>
+                    <li><a href="#">Categories</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-menu">
+                    <button class="subscribe-btn">Subscribe</button>
+                    <div class="user-icon">
+                        <img src="Iska.jpg" alt="User Profile">
+                        <div class="dropdown-menu">
+                            <a href="#">Profile</a>
+                            <a href="#">Settings</a>
+                            <a href="#">Watch Later</a>
+                            <a href="#">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero-section">
+            <div class="featured-content">
+                <h2 class="featured-title">The Last of Us</h2>
+                <p class="featured-info">2023 | Drama, Action | Season 1</p>
+                <p class="featured-description">
+                    After a global pandemic destroys civilization, a hardened survivor takes charge of a 14-year-old girl who may be humanity's last hope.
+                </p>
+                <div class="featured-actions">
+                    <button class="play-btn"><i class="fas fa-play"></i> Play Now</button>
+                    <button class="watchlist-btn"><i class="fas fa-plus"></i> Add to Watchlist</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <div class="section-header">
+                <h3>Continue Watching</h3>
+                <a href="#" class="see-all">See All</a>
+            </div>
+            <div class="content-carousel" id="continue-watching">
+                <!-- Content loaded via JavaScript -->
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <div class="section-header">
+                <h3>Popular on StreamVibe</h3>
+                <a href="#" class="see-all">See All</a>
+            </div>
+            <div class="content-carousel" id="popular">
+                <!-- Content loaded via JavaScript -->
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <div class="section-header">
+                <h3>New Releases</h3>
+                <a href="#" class="see-all">See All</a>
+            </div>
+            <div class="content-carousel" id="new-releases">
+                <!-- Content loaded via JavaScript -->
+            </div>
+        </section>
+        
+        <section class="subscription-banner">
+            <div class="subscription-content">
+                <h2>Upgrade Your Streaming Experience</h2>
+                <p>Get access to exclusive content, ad-free viewing, and download capabilities.</p>
+                <button class="premium-btn">Go Premium</button>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>MovieStream</h2>
+                <p>Your premium streaming destination</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Account</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Preferences</a></li>
+                        <li><a href="#">Corporate Information</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <p>Subscribe to our newsletter to get updates on new releases and features.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+            
+            <div class="footer-social">
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+
+
+            <main>
+                <section class="contact-section">
+                    <div class="contact-container">
+                        <h2>Contact me</h2>
+                        <form id="contactForm">
+                            <div class="input-group">
+                                <label for="full_name">Full Names:</label>
+                                <input type="text" id="full_name" placeholder="enter your full names" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" placeholder="your email address" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" placeholder="Message subject" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="message">Message:</label>
+                                <textarea id="message" placeholder="Enter Simple accurate message" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send</button>
+                            <div id="form-response"></div>
+                        </form>
+                    </div>
+                </section>
+            </main>
+
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 OnlineMovieStream. All rights reserved.</p>
+            <div class="app-links">
+                <a href="https://www.apple.com/app-store/"><i class="fab fa-apple"></i> App Store</a>
+                <a href="https://play.google.com/store/games?hl=en&pli=1"><i class="fab fa-google-play"></i> Google Play</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Video Player Modal -->
+    <div class="video-modal" id="video-player-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="video-title">Video Title</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="video-container">
+                <video id="video-player" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="video-controls">
+                <div class="video-info">
+                    <h4 id="video-series-title">Series Title</h4>
+                    <p id="video-description">Episode description goes here.</p>
+                </div>
+                <div class="episode-navigation">
+                    <button id="prev-episode"><i class="fas fa-step-backward"></i> Previous</button>
+                    <button id="next-episode">Next <i class="fas fa-step-forward"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mock data for content
+        const contentData = {
+            continueWatching: [
+                {
+                    id: 'cw1',
+                    title: 'The Last of Us',
+                    episode: 'S1:E4 "Please Hold to My Hand"',
+                    image: 'last.jpg',
+                    progress: 65,
+                    videoUrl: 'last.mp4'
+                },
+                {
+                    id: 'cw2',
+                    title: 'Succession',
+                    episode: 'S3:E7 "Too Much Birthday"',
+                    image: 'succession.jpg',
+                    progress: 45,
+                    videoUrl: 'succession.mp4'
+                },
+                {
+                    id: 'cw3',
+                    title: 'The White Lotus',
+                    episode: 'S2:E5 "That\'s Amore"',
+                    image: 'lotus.png',
+                    progress: 30,
+                    videoUrl: 'lotus.mp4'
+                },
+                {
+                    id: 'cw4',
+                    title: 'House of the Dragon',
+                    episode: 'S1:E8 "The Lord of the Tides"',
+                    image: 'house_dragon.jpg',
+                    progress: 80,
+                    videoUrl: 'dragon.mp4'
+                },
+                {
+                    id: 'cw5',
+                    title: 'Better Call Saul',
+                    episode: 'S6:E9 "Fun and Games"',
+                    image: 'soul.jpg',
+                    progress: 25,
+                    videoUrl: 'saul.mp4'
+                }
+            ],
+            popular: [
+                {
+                    id: 'p1',
+                    title: 'Stranger Things',
+                    info: '2016 | Sci-Fi, Horror | 4 Seasons',
+                    image: 'stranger.jpg',
+                    videoUrl: 'stranger.mp4'
+                },
+                {
+                    id: 'p2',
+                    title: 'Breaking Bad',
+                    info: '2008 | Drama, Crime | 5 Seasons',
+                    image: 'breaking.jpg',
+                    videoUrl: 'breaking.mp4'
+                },
+                {
+                    id: 'p3',
+                    title: 'Game of Thrones',
+                    info: '2011 | Fantasy, Drama | 8 Seasons',
+                    image: 'thrones.jpg',
+                    videoUrl: 'thrones.mp4'
+                },
+                {
+                    id: 'p4',
+                    title: 'The Crown',
+                    info: '2016 | Drama, History | 5 Seasons',
+                    image: 'crown.jpg',
+                    videoUrl: 'crown.mp4'
+                },
+                {
+                    id: 'p5',
+                    title: 'Black Mirror',
+                    info: '2011 | Sci-Fi, Drama | 5 Seasons',
+                    image: 'mirror.jpg',
+                    videoUrl: 'mirror.mp4'
+                },
+                {
+                    id: 'p6',
+                    title: 'The Mandalorian',
+                    info: '2019 | Sci-Fi, Action | 3 Seasons',
+                    image: 'mandalonian.jpg',
+                    videoUrl: 'mandalonian.mp4'
+                }
+            ],
+            newReleases: [
+                {
+                    id: 'n1',
+                    title: 'House of the Dragon',
+                    info: '2022 | Fantasy, Drama | New Episode',
+                    image: 'house_dragon.jpg',
+                    videoUrl: 'dragon.mp4'
+                },
+                {
+                    id: 'n2',
+                    title: 'The Lord of the Rings: The Rings of Power',
+                    info: '2022 | Fantasy, Adventure | New Episode',
+                    image: 'lord_rings.jpg',
+                    videoUrl: 'lord.mp4'
+                },
+                {
+                    id: 'n3',
+                    title: 'Andor',
+                    info: '2022 | Sci-Fi, Action | New Episode',
+                    image: 'andor.jpg',
+                    videoUrl: 'andor.mp4'
+                },
+                {
+                    id: 'n4',
+                    title: 'Wednesday',
+                    info: '2022 | Comedy, Fantasy | New Series',
+                    image: 'wednesday.jpg',
+                    videoUrl: 'wednesday.mp4'
+                },
+                {
+                    id: 'n5',
+                    title: 'Severance',
+                    info: '2022 | Sci-Fi, Thriller, Drama | New Series',
+                    image: 'severance.jpg',
+                    videoUrl: 'severance.mp4'
+                },
+                {
+                    id: 'n6',
+                    title: 'The Bear',
+                    info: '2022 | Drama, Comedy | New Series',
+                    image: 'bear.jpg',
+                    videoUrl: 'bear.mp4'
+                }
+            ]
+        };
+        
+        // Populate content sections
+        function populateContent() {
+            // Continue Watching Section
+            const continueWatchingContainer = document.getElementById('continue-watching');
+            contentData.continueWatching.forEach(item => {
+                const contentItem = document.createElement('div');
+                contentItem.className = 'content-item';
+                contentItem.dataset.videoUrl = item.videoUrl;
+                contentItem.dataset.title = item.title;
+                contentItem.dataset.seriesTitle = item.title;
+                contentItem.dataset.description = item.episode;
+                
+                contentItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="progress-bar" style="width: ${item.progress}%;"></div>
+                    <div class="overlay">
+                        <h4>${item.title}</h4>
+                        <p>${item.episode}</p>
+                        <div class="item-actions">
+                            <button class="play-action"><i class="fas fa-play"></i></button>
+                            <button class="info-action"><i class="fas fa-info-circle"></i></button>
+                            <button class="like-action"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                `;
+                
+                continueWatchingContainer.appendChild(contentItem);
+            });
+            
+            // Popular Section
+            const popularContainer = document.getElementById('popular');
+            contentData.popular.forEach(item => {
+                const contentItem = document.createElement('div');
+                contentItem.className = 'content-item';
+                contentItem.dataset.videoUrl = item.videoUrl;
+                contentItem.dataset.title = item.title;
+                contentItem.dataset.seriesTitle = item.title;
+                contentItem.dataset.description = item.info;
+                
+                contentItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="overlay">
+                        <h4>${item.title}</h4>
+                        <p>${item.info}</p>
+                        <div class="item-actions">
+                            <button class="play-action"><i class="fas fa-play"></i></button>
+                            <button class="info-action"><i class="fas fa-info-circle"></i></button>
+                            <button class="like-action"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                `;
+                
+                popularContainer.appendChild(contentItem);
+            });
+            
+            // New Releases Section
+            const newReleasesContainer = document.getElementById('new-releases');
+            contentData.newReleases.forEach(item => {
+                const contentItem = document.createElement('div');
+                contentItem.className = 'content-item';
+                contentItem.dataset.videoUrl = item.videoUrl;
+                contentItem.dataset.title = item.title;
+                contentItem.dataset.seriesTitle = item.title;
+                contentItem.dataset.description = item.info;
+                
+                contentItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="overlay">
+                        <h4>${item.title}</h4>
+                        <p>${item.info}</p>
+                        <div class="item-actions">
+                            <button class="play-action"><i class="fas fa-play"></i></button>
+                            <button class="info-action"><i class="fas fa-info-circle"></i></button>
+                            <button class="like-action"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                `;
+                
+                newReleasesContainer.appendChild(contentItem);
+            });
+        }
+        
+        // Initialize content
+        populateContent();
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Video Modal Functionality
+        const videoModal = document.getElementById('video-player-modal');
+        const videoPlayer = document.getElementById('video-player');
+        const videoTitle = document.getElementById('video-title');
+        const videoSeriesTitle = document.getElementById('video-series-title');
+        const videoDescription = document.getElementById('video-description');
+        const closeModal = document.querySelector('.close-modal');
+        const featuredPlayBtn = document.querySelector('.play-btn');
+        
+        // Open modal from featured content
+        featuredPlayBtn.addEventListener('click', function() {
+            openVideoModal('videos/last-of-us-trailer.mp4', 'The Last of Us', 'The Last of Us', 'S1:E1 "When You\'re Lost in the Darkness"');
+        });
+        
+        // Open modal from content items
+        document.querySelectorAll('.content-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (e.target.closest('.play-action') || e.target.closest('img')) {
+                    openVideoModal(
+                        this.dataset.videoUrl,
+                        this.dataset.title,
+                        this.dataset.seriesTitle,
+                        this.dataset.description
+                    );
+                }
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            videoPlayer.pause();
+            videoModal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside content
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                videoPlayer.pause();
+                videoModal.style.display = 'none';
+            }
+        });
+        
+        // Episode navigation buttons
+        document.getElementById('prev-episode').addEventListener('click', function() {
+            alert('Previous episode functionality would go here');
+        });
+        
+        document.getElementById('next-episode').addEventListener('click', function() {
+            alert('Next episode functionality would go here');
+        });
+        
+        // Function to open video modal
+        function openVideoModal(videoUrl, title, seriesTitle, description) {
+            videoPlayer.src = videoUrl;
+            videoTitle.textContent = title;
+            videoSeriesTitle.textContent = seriesTitle;
+            videoDescription.textContent = description;
+            videoModal.style.display = 'flex';
+            videoPlayer.play();
+        }
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+    });
+    
+    
+    // Video streaming service with adaptive bitrate streaming
+    
+    const express = require('express');
+    const fs = require('fs');
+    const path = require('path');
+    const router = express.Router();
+    
+    // Stream video with range request support (for seeking)
+    router.get('/stream/:filename', async (req, res) => {
+        try {
+            const filename = req.params.filename;
+            
+            // Validate filename to prevent directory traversal attacks
+            if (!filename || filename.includes('..')) {
+                return res.status(400).send('Invalid filename');
+            }
+            
+            // Set up video path
+            const videoPath = path.join(__dirname, '..', 'public', 'videos', filename);
+            
+            // Check if file exists
+            if (!fs.existsSync(videoPath)) {
+                return res.status(404).send('Video not found');
+            }
+            
+            // Get video stats
+            const stat = fs.statSync(videoPath);
+            const fileSize = stat.size;
+            
+            // Handle range requests (for video seeking)
+            const range = req.headers.range;
+            
+            if (range) {
+                // Parse Range header
+                // Range: bytes=start-end
+                const parts = range.replace(/bytes=/, '').split('-');
+                const start = parseInt(parts[0], 10);
+                const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+                
+                // Calculate chunk size
+                const chunkSize = end - start + 1;
+                const file = fs.createReadStream(videoPath, { start, end });
+                
+                // Set response headers
+                res.writeHead(206, {
+                    'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+                    'Accept-Ranges': 'bytes',
+                    'Content-Length': chunkSize,
+                    'Content-Type': 'video/mp4'
+                });
+                
+                // Stream video chunk
+                file.pipe(res);
+            } else {
+                // If no range request, send the entire file
+                res.writeHead(200, {
+                    'Content-Length': fileSize,
+                    'Content-Type': 'video/mp4'
+                });
+                
+                fs.createReadStream(videoPath).pipe(res);
+            }
+        } catch (error) {
+            console.error('Video streaming error:', error);
+            res.status(500).send('Server error');
+        }
+    });
+    
+    // Get HLS manifest file (for adaptive streaming)
+    router.get('/manifest/:videoId.m3u8', async (req, res) => {
+        try {
+            const videoId = req.params.videoId;
+            const manifestPath = path.join(__dirname, '..', 'public', 'videos', 'hls', videoId, 'manifest.m3u8');
+            
+            if (!fs.existsSync(manifestPath)) {
+                return res.status(404).send('Manifest not found');
+            }
+            
+            res.setHeader('Content-Type', 'application/x-mpegURL');
+            fs.createReadStream(manifestPath).pipe(res);
+        } catch (error) {
+            console.error('Manifest fetch error:', error);
+            res.status(500).send('Server error');
+        }
+    });
+    
+    // Get HLS segment file
+    router.get('/segment/:videoId/:segment', async (req, res) => {
+        try {
+            const { videoId, segment } = req.params;
+            const segmentPath = path.join(__dirname, '..', 'public', 'videos', 'hls', videoId, segment);
+            
+            if (!fs.existsSync(segmentPath)) {
+                return res.status(404).send('Segment not found');
+            }
+            
+            res.setHeader('Content-Type', 'video/MP2T');
+            fs.createReadStream(segmentPath).pipe(res);
+        } catch (error) {
+            console.error('Segment fetch error:', error);
+            res.status(500).send('Server error');
+        }
+    });
+    
+</script>
+</body>
+</html>

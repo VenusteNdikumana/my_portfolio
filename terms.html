@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Terms and Conditions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background: #d9534f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .close-btn:hover {
+            background: #c9302c;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="close-btn" onclick="closeTerms()">&times;</button>
+        <h1>Terms and Conditions</h1>
+        <p>Welcome to my portfolio website. By accessing this website, you agree to comply with and be bound by the following terms and conditions.</p>
+        
+        <h2>1. Acceptance of Terms</h2>
+        <p>By using this website, you accept these terms in full. If you disagree with any part, please do not use this website.</p>
+        
+        <h2>2. Modifications</h2>
+        <p>I reserve the right to update these terms at any time. Please review this page periodically for changes.</p>
+        
+        <h2>3. User Responsibilities</h2>
+        <p>You agree to use this website responsibly and not engage in any activity that may harm the website or its users.</p>
+    </div>
+
+    <script>
+        function closeTerms() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: white;
+    --header-bg: hwb(0 0% 100%);
+    --header-text: rgb(255, 255, 255);
+}
+.light-mode {
+    --bg-color: white;
+    --text-color: black;
+    --header-bg:hwb(231 84% 13%);
+    --header-text: rgb(0, 0, 0);
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Sticky Header Styles */
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px;
+background-color: var(--header-bg);
+color: var(--header-text);
+position: sticky;
+top: 0;
+z-index: 1000;
+flex-wrap: wrap;
+transition: padding 0.3s, box-shadow 0.3s;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: Add this for a shrinking header effect when scrolling */
+header.scrolled {
+padding: 10px 20px;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.social-media {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    margin-top: 20px;
+}
+.social-media a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
+nav {
+    flex-grow: 1;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    font-size: large;
+    font-weight: bold;
+}
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+    padding: 5px 10px;
+}
+nav ul li a:hover {
+    color:orange;
+}
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    gap: 50px;
+    flex-direction: row-reverse;
+    flex: 1;
+    flex-wrap: wrap;
+}
+.image-container {
+    flex-shrink: 0;
+}
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.text-container {
+    max-width: 500px;
+    flex-grow: 1;
+}
+h1 {
+    font-size: 48px;
+    margin: 0;
+}
+h1 span {
+    font-weight: bold;
+}
+p {
+    font-size: 16px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Footer Styles */
+.footer-section {
+padding: 60px 20px 30px;
+position: relative;
+background-color: var(--header-bg);
+}
+
+.footer-container {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+gap: 40px;
+margin-bottom: 40px;
+}
+
+.footer-column h3 {
+font-size: 18px;
+margin-bottom: 20px;
+position: relative;
+display: inline-block;
+}
+
+.footer-column h3:after {
+content: '';
+position: absolute;
+left: 0;
+bottom: -5px;
+width: 40px;
+height: 2px;
+background-color: greenyellow;
+}
+
+.footer-links {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.footer-links li {
+margin-bottom: 10px;
+}
+
+.footer-links a {
+color: var(--text-color);
+opacity: 0.8;
+text-decoration: none;
+transition: all 0.3s;
+display: block;
+position: relative;
+padding-left: 0;
+}
+
+.footer-links a:before {
+position: absolute;
+left: -15px;
+opacity: 0;
+transition: all 0.3s;
+color: rgb(47, 141, 255);
+}
+
+.footer-links a:hover {
+opacity: 1;
+padding-left: 15px;
+color: rgb(47, 141, 255);
+}
+
+.footer-links a:hover:before {
+opacity: 1;
+left: 0;
+}
+
+.footer-contact {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.footer-contact li {
+display: flex;
+align-items: center;
+margin-bottom: 15px;
+opacity: 0.8;
+}
+
+.footer-contact li svg {
+margin-right: 10px;
+min-width: 16px;
+color: rgb(47, 141, 255);
+}
+
+.copyright {
+text-align: center;
+padding-top: 30px;
+border-top: 1px solid rgba(255, 255, 255, 0.1);
+opacity: 0.7;
+font-size: 14px;
+}
+
+.footer-bottom-links {
+margin-top: 10px;
+}
+
+.footer-bottom-links a {
+color: var(--text-color);
+text-decoration: none;
+margin: 0 10px;
+transition: color 0.3s;
+}
+
+.footer-bottom-links a:hover {
+color: greenyellow;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+.footer-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 30px;
+}
+
+.contact-info {
+    grid-column: span 2;
+}
+}
+
+@media (max-width: 480px) {
+.footer-container {
+    grid-template-columns: 1fr;
+}
+
+.contact-info {
+    grid-column: span 1;
+}
+
+.newsletter-form {
+    flex-direction: column;
+}
+}
+.mode-toggle {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 30px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 992px) {
+    .hero {
+        padding: 40px 20px;
+        gap: 30px;
+    }
+    .image-container img {
+        width: 200px;
+        height: 200px;
+    }
+    h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+    .menu-icon {
+        display: block;
+        order: 3;
+    }
+    .mode-toggle {
+        order: 2;
+        margin-left: auto;
+        margin-right: 15px;
+    }
+    nav {
+        flex-basis: 100%;
+        order: 4;
+    }
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 15px 0;
+        margin-top: 15px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 15px;
+    }
+    .social-media {
+        position: static;
+        justify-content: center;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 16px;
+    }
+    .buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+
+
+/* Projects Section Styles */
+.projects-section {
+padding: 50px 20px;
+text-align: center;
+}
+
+.section-title {
+font-size: 36px;
+margin-bottom: 40px;
+position: relative;
+display: inline-block;
+}
+
+.section-title::after {
+content: '';
+position: absolute;
+width: 50%;
+height: 3px;
+background-color: greenyellow;
+bottom: -10px;
+left: 25%;
+}
+
+.projects-container {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 30px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.project-card {
+background-color: rgba(255, 255, 255, 0.05);
+border-radius: 10px;
+overflow: hidden;
+transition: transform 0.3s, box-shadow 0.3s;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-image {
+width: 100%;
+height: 200px;
+object-fit: cover;
+}
+
+.project-info {
+padding: 20px;
+}
+
+.project-title {
+font-size: 20px;
+margin-bottom: 10px;
+}
+
+.project-description {
+font-size: 14px;
+color: var(--text-color);
+opacity: 0.8;
+margin-bottom: 15px;
+}
+
+.project-tags {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-bottom: 15px;
+}
+
+.project-tag {
+background-color: rgba(173, 255, 47, 0.2);
+color: rgb(27, 140, 21);
+padding: 4px 10px;
+border-radius: 20px;
+font-size: 12px;
+}
+
+.project-link {
+display: inline-block;
+padding: 8px 16px;
+background-color: rgb(56, 172, 66);
+color: black;
+text-decoration: none;
+border-radius: 5px;
+font-weight: bold;
+transition: background-color 0.3s;
+}
+
+.project-link:hover {
+background-color: rgb(128, 199, 0);
+}
+
+/* Filter Buttons */
+.filter-buttons {
+display: flex;
+justify-content: center;
+gap: 15px;
+margin-bottom: 30px;
+flex-wrap: wrap;
+}
+
+.filter-button {
+padding: 8px 20px;
+background: none;
+border: 2px solid orange;
+color: var(--text-color);
+border-radius: 30px;
+cursor: pointer;
+font-weight: bold;
+transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-button:hover,
+.filter-button.active {
+background-color: greenyellow;
+color: black;
+}
+
+@media (max-width: 768px) {
+.projects-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.section-title {
+    font-size: 30px;
+}
+}
+
+@media (max-width: 480px) {
+.projects-container {
+    grid-template-columns: 1fr;
+}
+
+.filter-buttons {
+    gap: 10px;
+}
+
+.filter-button {
+    padding: 6px 15px;
+    font-size: 14px;
+}
+}
