@@ -498,8 +498,8 @@
             // Send confirmation email to subscriber
             await emailjs.send("service_tghzslh", "template_lvwmffd", emailParams);
 
-            messageBox.innerText = "Subscribed successfully! Check your email.";
-            messageBox.style.color = "green";
+            messageBox.innerText = "Subscribed successfully! Check your email now.";
+            messageBox.style.color = "orange";
         } catch (error) {
             messageBox.innerText = "Subscription failed. Please try again.";
             messageBox.style.color = "red";
