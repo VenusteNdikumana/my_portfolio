@@ -46,8 +46,6 @@
             margin-right: 20px;
         }
          
- 
-        }
         nav {
             flex-grow: 1;
         }
@@ -79,8 +77,8 @@
             font-size: 30px;
             padding: 10px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: right;
+            justify-content: right;
         }
         
         /* About Page Specific Styles */
@@ -401,8 +399,7 @@
                 display: block;
                 order: 3;
             }
-            
-       
+             
             nav {
                 flex-basis: 100%;
                 order: 4;
@@ -424,13 +421,7 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            .social-media {
-                position: static;
-                justify-content: center;
-                width: 100%;
-                margin-top: 20px;
-            }
-        }
+            
 
         @media (max-width: 480px) {
             .logo {
