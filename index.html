@@ -466,18 +466,48 @@
         <!--Newsletter Sign-up-->
         <div class="newsletter">
             <h3>Subscribe to us</h3>
-            <form action="https://formsubmit.co/venustendikumana2003@gmail.com" method="POST">
-                <input name="email" type="email" placeholder="Enter your e-mail address" required>
-                
-                <!-- Hidden fields -->
-                <input type="hidden" name="_subject" value="New portfolio subscription">
-                <input type="hidden" name="_autoresponse" value=" Hello Subscriber, Thank you for subscribing to our portfolio, we are very pleased to collaborate with you!Best regards.">
-                <input type="hidden" name="_next" value="https://venustendikumana.github.io/my_portfolio//index.html">
-                
-                <button type="submit">Subscribe</button>
-                <script src="https://www.google.com/recaptcha/api.js?render=your-site-key"></script>
+            <form id="newsletter-form">
+    <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+</form>
+<p id="message"></p>
 
-            </form>
+<!-- Include EmailJS Library -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    (function() {
+        emailjs.init("Mtw2dPz_JuIAcd7j8"); // Replace with your EmailJS Public Key
+    })();
+
+    document.getElementById("newsletter-form").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById("newsletter-email").value;
+        const messageBox = document.getElementById("message");
+
+        // EmailJS Parameters
+        const emailParams = {
+            user_email: email, 
+            admin_email: "ndikumanavenuste6@gmail.com" // Replace with your email
+        };
+
+        try {
+            // Send notification email to admin
+            await emailjs.send("service_tghzslh", "template_4vb83gc", emailParams);
+            
+            // Send confirmation email to subscriber
+            await emailjs.send("service_tghzslh", "template_lvwmffd", emailParams);
+
+            messageBox.innerText = "Subscribed successfully! Check your email.";
+            messageBox.style.color = "green";
+        } catch (error) {
+            messageBox.innerText = "Subscription failed. Please try again.";
+            messageBox.style.color = "red";
+            console.error("EmailJS Error:", error);
+        }
+    });
+</script>
+
         </div>
         
         <!-- Copyright -->
