@@ -42,22 +42,7 @@ header {
     font-weight: bold;
     margin-right: 20px;
 }
-.social-media {
-    display: flex;
-    gap: 10px;
-    position: relative;
-    margin-top: 20px;
-}
-.social-media a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    border-radius: 8px;
-    text-decoration: none;
-}
+
 nav {
     flex-grow: 1;
 }
@@ -341,11 +326,7 @@ p {
         display: block;
         order: 3;
     }
-    .mode-toggle {
-        order: 2;
-        margin-left: auto;
-        margin-right: 15px;
-    }
+     
     nav {
         flex-basis: 100%;
         order: 4;
@@ -363,12 +344,7 @@ p {
         text-align: center;
         padding: 30px 15px;
     }
-    .social-media {
-        position: static;
-        justify-content: center;
-        width: 100%;
-        margin-top: 20px;
-    }
+
     .buttons {
         justify-content: center;
     }
