@@ -54,6 +54,7 @@ box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     margin-right: 20px;
 }
  
+ 
 nav {
     flex-grow: 1;
 }
@@ -316,7 +317,7 @@ color: greenyellow;
     .buttons {
         justify-content: center;
     }
-
+}
 
 @media (max-width: 480px) {
     .logo {
